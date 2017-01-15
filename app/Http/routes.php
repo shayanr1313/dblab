@@ -19,7 +19,7 @@ Route::group(['middleware' => ['web']], function () {
      * Show Task Dashboard
      */
     Route::get('/', function () {
-        // $tasks = Task::where('list', 'List 2')->orderBy('created_at', 'asc')->get();
+        // $tasks = Task::where('list', 'List 2')->orderBy('created_at', 'asc')->get();;
         return view('tasks', [
             'tasks' => Task::orderBy('created_at', 'asc')->get(),
             'tlist' => Task::select('list')->distinct()->get()
