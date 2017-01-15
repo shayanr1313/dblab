@@ -22,6 +22,7 @@ Route::group(['middleware' => ['web']], function () {
         // $tasks = Task::where('list', 'List 2')->orderBy('created_at', 'asc')->get();
         return view('tasks', [
             'tasks' => Task::orderBy('created_at', 'asc')->get(),
+            'tlist' => Task::select('list')->distinct()->get()
         ]);
     });
 
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['web']], function () {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'text' => 'required|max:255',
+            'list' => 'required|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -43,6 +45,7 @@ Route::group(['middleware' => ['web']], function () {
         $task = new Task;
         $task->name = $request->name;
         $task->text = $request->text;
+        $task->list = $request->list;
         $task->save();
 
         return redirect('/');
