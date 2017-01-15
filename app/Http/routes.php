@@ -27,6 +27,19 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     /**
+     * Select List
+     */
+    Route::get('/task/{list}', function ($list) {
+        // $tasks = Task::where('list', 'List 2')->orderBy('created_at', 'asc')->get();
+        return view('tasks', [
+            'tasks' => Task::where('list', $list)->orderBy('created_at', 'asc')->get(),
+            'tlist' => Task::select('list')->distinct()->get()
+            // 'tasks' => $tasks
+        ]);
+        return redirect('/');
+    });
+
+    /**
      * Add New Task
      */
     Route::post('/task', function (Request $request) {

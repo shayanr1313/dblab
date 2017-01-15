@@ -52,7 +52,10 @@
             @if (count($tasks) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <!-- Current Tasks -->
+                        <!-- Select List -->
+                        @foreach ($tlist as $task)
+                            <a href="{{ url('task/'.$task->list) }}"><button>{{ $task->list }}</button></a>
+                        @endforeach
                     </div>
 
                     <div class="panel-body">
