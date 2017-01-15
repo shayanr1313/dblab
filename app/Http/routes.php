@@ -60,7 +60,32 @@ Route::group(['middleware' => ['web']], function () {
         return redirect('/');
     });
 
-        /**
+    /**
+     *  Update list
+     */
+    Route::post('/task/updateList/{id}', function (Request $request) {
+        $validator = Validator::make($request->all(), [
+            'list' => 'required|max:255',
+            // 'name' => 'required|max:255',
+            // 'text' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        // $task = new Task;
+        $task = Task::findOrFail($request->id);
+        // $task->name = $request->name;
+        $task->list = $request->list;
+        $task->save();
+
+        return redirect('/');
+    });
+
+    /**
      *  Update text
      */
     Route::post('/task/updateText/{id}', function (Request $request) {

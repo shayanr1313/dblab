@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="col-sm-offset-2 col-sm-8">
+    <!-- <div class="container"> -->
+        <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     New Task
@@ -61,8 +61,11 @@
                                 <th>List</th>
                                 <th>Task</th>
                                 <th>Text</th>
+                                <th></th>
+                                <th>Edit list</th>
+                                <th></th>
+                                <th>Edit text</th>
                                 <th>&nbsp;</th>
-                                <th>Utext</th>
                             </thead>
                             <tbody>
                                 @foreach ($tasks as $task)
@@ -80,6 +83,19 @@
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-btn"></i>Del
                                                 </button>
+                                            </form>
+                                        </td>
+
+                                        <td>
+                                            <form action="{{ url('task/updateList/'.$task->id) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <!-- {{ method_field('UPDATE') }} -->
+                                                    <input type="text" name="list" id="task-text" class="form-control" value="">
+                                                </td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fa fa-btn"></i>U list
+                                                    </button>
                                             </form>
                                         </td>
 
@@ -103,5 +119,5 @@
                 </div>
             @endif
         </div>
-    </div>
+    <!-- </div> -->
 @endsection
