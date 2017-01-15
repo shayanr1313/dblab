@@ -18,10 +18,16 @@
 
                         <!-- Task Name -->
                         <div class="form-group">
-                            <label for="task-name" class="col-sm-3 control-label">Task</label>
 
-                            <div class="col-sm-6">
+                            <label for="task-name" class="col-sm-3 control-label">Task</label>
+                            <div class="col-sm-7">
                                 <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                            </div>
+
+                            <label for="task-text" class="col-sm-3 control-label">Text</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" name="text" id="task-text" class="form-control" value="{{ old('text') }}">
                             </div>
                         </div>
 
@@ -41,19 +47,21 @@
             @if (count($tasks) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Tasks
+                        <!-- Current Tasks -->
                     </div>
 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
                                 <th>Task</th>
+                                <th>Text</th>
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
                                 @foreach ($tasks as $task)
                                     <tr>
                                         <td class="table-text"><div>{{ $task->name }}</div></td>
+                                        <td class="table-text"><div>{{ $task->text }}</div></td>
 
                                         <!-- Task Delete Button -->
                                         <td>
@@ -62,7 +70,7 @@
                                                 {{ method_field('DELETE') }}
 
                                                 <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Delete
+                                                    <i class="fa fa-btn"></i>Del
                                                 </button>
                                             </form>
                                         </td>

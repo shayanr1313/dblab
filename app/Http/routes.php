@@ -19,8 +19,9 @@ Route::group(['middleware' => ['web']], function () {
      * Show Task Dashboard
      */
     Route::get('/', function () {
+        // $tasks = Task::where('list', 'List 2')->orderBy('created_at', 'asc')->get();
         return view('tasks', [
-            'tasks' => Task::orderBy('created_at', 'asc')->get()
+            'tasks' => Task::orderBy('created_at', 'asc')->get(),
         ]);
     });
 
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/task', function (Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
+            'text' => 'required|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -40,6 +42,7 @@ Route::group(['middleware' => ['web']], function () {
 
         $task = new Task;
         $task->name = $request->name;
+        $task->text = $request->text;
         $task->save();
 
         return redirect('/');
