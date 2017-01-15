@@ -23,7 +23,7 @@
                             <div class="col-sm-7">
                                 <input type="text" name="list" id="task-list" class="form-control" value="{{ old('list') }}">
                             </div>
-                            
+
                             <label for="task-name" class="col-sm-3 control-label">Task</label>
                             <div class="col-sm-7">
                                 <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
@@ -58,6 +58,7 @@
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
+                                <th>List</th>
                                 <th>Task</th>
                                 <th>Text</th>
                                 <th>&nbsp;</th>
@@ -66,6 +67,7 @@
                             <tbody>
                                 @foreach ($tasks as $task)
                                     <tr>
+                                        <td class="table-text"><div>{{ $task->list }}</div></td>
                                         <td class="table-text"><div>{{ $task->name }}</div></td>
                                         <td class="table-text"><div>{{ $task->text }}</div></td>
 
