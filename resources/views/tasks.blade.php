@@ -56,6 +56,7 @@
                                 <th>Task</th>
                                 <th>Text</th>
                                 <th>&nbsp;</th>
+                                <th>Utext</th>
                             </thead>
                             <tbody>
                                 @foreach ($tasks as $task)
@@ -74,6 +75,19 @@
                                                 </button>
                                             </form>
                                         </td>
+
+                                        <td>
+                                            <form action="{{ url('task/updateText/'.$task->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <!-- {{ method_field('UPDATE') }} -->
+                                                <input type="text" name="text" id="task-text" class="form-control" value="">
+                                            <td>
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-btn"></i>U text
+                                                </button>
+                                            </form>
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

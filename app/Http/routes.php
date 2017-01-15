@@ -56,4 +56,28 @@ Route::group(['middleware' => ['web']], function () {
 
         return redirect('/');
     });
+
+        /**
+     *  Update text
+     */
+    Route::post('/task/updateText/{id}', function (Request $request) {
+        $validator = Validator::make($request->all(), [
+            // 'name' => 'required|max:255',
+            'text' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        // $task = new Task;
+        $task = Task::findOrFail($request->id);
+        // $task->name = $request->name;
+        $task->text = $request->text;
+        $task->save();
+
+        return redirect('/');
+    });
 });
